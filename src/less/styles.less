@@ -1,0 +1,127 @@
+.header {
+	border-bottom: 1px solid #eee;
+	.glyphicon {
+		margin-right: 15px;
+	}
+}
+
+.main {
+	padding-top: 40px;
+}
+
+.add-button {
+	float: right;
+	opacity: 0.7;
+	margin-right: 15px;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.add-button:not(:disabled):hover {
+	opacity: 1;
+}
+
+.show-more-button {}
+
+.table {
+	.media-hack {
+		display: none;
+	}
+
+	.table-header .glyphicon {
+		margin-right: 10px;
+	}
+
+	.table-body .table-row {
+		display: none;
+		cursor: pointer;
+		th:nth-child(3),
+		td:nth-child(3) {
+			max-width: 8em;
+		}
+		
+	}
+
+	td:first-child,
+	td:nth-child(2) {
+		max-width: 6em;
+		cursor: pointer;
+		word-wrap: break-word;
+	}
+
+	.table-footer .table-row {
+		width: 100%;
+		th {
+			text-align: center;
+		}
+	}
+}
+
+.edit-button {
+	margin-right: 10px;
+}
+
+.edit-button,
+.remove-button {
+	opacity: 0.7;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.edit-button:hover,
+.remove-button:hover {
+	opacity: 1;
+}
+
+.edit-button .glyphicon,
+.remove-button .glyphicon {
+	display: inline;
+}
+
+.footer {
+	margin-top: 20px;
+	text-align: right;
+}
+
+@media only screen and (max-width: 992px) {
+	& th:nth-child(3),
+	& td:nth-child(3) {
+		max-width: 6em;
+	}
+}
+
+@media only screen and (max-width: 636px) {
+	.header h1 {
+		color: green;
+	}
+
+	.table .media-hack {
+		display: inline;
+	}
+}
+
+@media only screen and (max-width: 496px) {
+	.header h1 {
+		font-size: 2em;
+	}
+
+	.table {
+		th {
+			font-size: 0.85em;
+		}
+
+		.edit-button {
+			display: block;
+			margin-right: 0;
+		}
+
+		.remove-button {
+			display: block;
+			margin-top: 5px;
+		}
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.header h1 {
+		color: red;
+	}
+}
