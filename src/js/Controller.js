@@ -1,5 +1,5 @@
-import { Model } from './Model';
-import { View } from './View';
+import { Model } from './model';
+import { View } from './view';
 
 export const Controller = {
 	init() {
@@ -12,7 +12,6 @@ export const Controller = {
 			onAddItemCallback: Controller.onAddItemCallback,
 			onRemoveItemCallback: Controller.onRemoveItemCallback,
 			onEditItemCallback: Controller.onEditItemCallback,
-			onShowMoreCallback: Controller.onShowMoreCallback,
 		});
 
 		// View рендерит все полученные из Model данные
@@ -29,10 +28,6 @@ export const Controller = {
 
 	onEditItemCallback(...args) {
 		Controller.editItem(...args);
-	},
-
-	onShowMoreCallback(...args) {
-		Controller.showMore(...args);
 	},
 
 	addItem(itemData) {
@@ -58,11 +53,6 @@ export const Controller = {
 			View.removeItem(itemId);
 			View.setState({ mode: View.MODES.DEFAULT, editedItemId: null });
 		});
-	},
-
-	showMore() {
-		// eslint-disable-next-line no-alert
-		alert('Show More!');
 	},
 
 	isLocalStorageSupported() {

@@ -15,7 +15,6 @@ export const View = {
 	$table: null,
 
 	$addButton: null,
-	$showMoreButton: null,
 
 	MODES,
 	state: {
@@ -24,7 +23,12 @@ export const View = {
 	},
 	props: {},
 
-	init({ onInputCallback, onAddItemCallback, onRemoveItemCallback, onEditItemCallback, onShowMoreCallback }) {
+	init({
+		onInputCallback,
+		onAddItemCallback,
+		onRemoveItemCallback,
+		onEditItemCallback,
+	}) {
 		View.$body = $('html, body');
 		View.$inputs = $('[data-js-selector^="form-input-"]');
 		View.$author = $('[data-js-selector="form-input-author"]');
@@ -33,7 +37,6 @@ export const View = {
 		View.$pages = $('[data-js-selector="form-input-pages"]');
 		View.$table = $('[data-js-selector="table-body"]');
 		View.$addButton = $('[data-js-selector="add-button"]');
-		View.$showMoreButton = $('[data-js-selector="show-more-button"]');
 
 		// Маски для инпутов года и количества страниц
 		View.$year.mask('9?999', {
@@ -55,7 +58,6 @@ export const View = {
 			onAddItemCallback,
 			onRemoveItemCallback,
 			onEditItemCallback,
-			onShowMoreCallback,
 		});
 
 		// Короче, когда юзер заполнит инпуты,
@@ -70,9 +72,6 @@ export const View = {
 
 		// Обработка клика по кнопке 'Remove'
 		View.$table.on('click', '[data-js-selector="remove-button"]', View.onRemoveItemHandler);
-
-		// Обработка клика по 'Show more books'
-		View.$showMoreButton.on('click', View.onShowMoreHandler);
 	},
 
 	isEditingState() {
@@ -114,7 +113,9 @@ export const View = {
 
 	onRemoveItemHandler(event) {
 		if (typeof View.props.onRemoveItemCallback === 'function') {
-			const itemId = $(event.target).closest('[data-js-selector="item-row"]').data('js-item-id');
+			const itemId = $(event.target)
+				.closest('[data-js-selector="item-row"]')
+				.data('js-item-id');
 			View.props.onRemoveItemCallback(itemId);
 		}
 	},
@@ -123,12 +124,6 @@ export const View = {
 		const itemId = $(event.target).closest('[data-js-selector="item-row"]').data('js-item-id');
 		if (typeof View.props.onEditItemCallback === 'function') {
 			View.props.onEditItemCallback(itemId);
-		}
-	},
-
-	onShowMoreHandler(/* event */) {
-		if (typeof View.props.onShowMoreCallback === 'function') {
-			View.props.onShowMoreCallback();
 		}
 	},
 
@@ -198,7 +193,11 @@ export const View = {
 		let i = 0;
 		const animationId = setInterval(() => {
 			if (i < items.length) {
-				View.$table.append(View.compileRowTemplate(items[i])).children('tr').eq(i).fadeIn('fast');
+				View.$table
+					.append(View.compileRowTemplate(items[i]))
+					.children('tr')
+					.eq(i)
+					.fadeIn('fast');
 				View.scrollToBottom();
 				i++;
 			} else {

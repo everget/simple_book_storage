@@ -6,7 +6,12 @@ export const Model = {
 	},
 
 	generateHash(string) {
-		const base = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', ...'abcdefghijklmnopqrstuvwxyz', ...'0123456789', ...string];
+		const base = [
+			...'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			...'abcdefghijklmnopqrstuvwxyz',
+			...'0123456789',
+			...string,
+		];
 		// eslint-disable-next-line no-unused-vars
 		return [...Array(16)].map((_) => base[(Math.random() * base.length) | 0]).join('');
 	},
